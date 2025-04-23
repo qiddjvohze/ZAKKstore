@@ -1,0 +1,1016 @@
+/********** Enhanced E-commerce Template CSS **********/
+
+/* --- Base Variables --- */
+:root {
+    --primary: #06BBCC;       /* Primary brand color (Teal/Cyan) - Consider adjusting based on specific brand */
+    --secondary: #181d38;     /* Dark color, used for text and accents */
+    --light: #F0FBFC;         /* Very light background/accent color */
+    --dark: #181d38;          /* Kept the same as secondary for this example, could be a different dark shade */
+    --white: #FFFFFF;         /* Pure white */
+    --gray: #6c757d;          /* Standard gray for subtle text/borders */
+    --border-color: #dee2e6;  /* Standard border color */
+    --success: #198754;       /* Success color (e.g., for messages) */
+    --danger: #dc3545;        /* Danger color (e.g., for errors, sale prices) */
+
+    --body-font: 'Nunito', sans-serif; /* Main font */
+    --heading-font: 'Nunito', sans-serif; /* Font for headings, can be different */
+
+    --border-radius: 0.25rem;     /* Standard border radius for subtle curves */
+    --border-radius-lg: 0.5rem;   /* Larger border radius */
+    --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Standard box shadow for depth */
+    --box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Lighter shadow */
+    --transition-speed: 0.3s;     /* Consistent transition speed */
+}
+
+/* --- Global Styles & Utilities --- */
+body {
+    font-family: var(--body-font);
+    color: var(--secondary); /* Default text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700; /* Make headings bolder by default */
+}
+
+.fw-medium {
+    font-weight: 600 !important; /* Keep utility class */
+}
+
+.fw-semi-bold {
+    font-weight: 700 !important; /* Keep utility class */
+}
+
+/* --- Back to Top Button --- */
+.back-to-top {
+    position: fixed;
+    display: none; /* Initially hidden */
+    right: 30px;   /* Adjusted position slightly */
+    bottom: 30px;  /* Adjusted position slightly */
+    z-index: 1090; /* Ensure it's above most content but below modals */
+    background-color: var(--primary);
+    color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-sm);
+    transition: background-color var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+.back-to-top:hover {
+    background-color: var(--dark); /* Darker shade on hover */
+    color: var(--white);
+    opacity: 0.9;
+}
+
+/* --- Spinner --- */
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+    z-index: 99999; /* Highest z-index */
+    position: fixed; /* Ensure it covers the whole screen */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#spinner.show {
+    transition: opacity 0.5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Add a default spinner style if not provided by JS */
+#spinner .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: var(--primary);
+}
+
+
+/* --- Buttons --- */
+.btn {
+    font-family: var(--heading-font); /* Use heading font for buttons for consistency */
+    font-weight: 600;
+    transition: color var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+    border-radius: var(--border-radius); /* Apply standard border radius */
+    padding: 0.5rem 1rem; /* Standard padding */
+    text-transform: uppercase; /* Common style for buttons */
+    letter-spacing: 0.5px;
+}
+
+.btn:focus, .btn:active {
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary), 0.5); /* Focus ring */
+    outline: 0;
+}
+
+/* Primary Button (e.g., Add to Cart, Checkout) */
+.btn-primary {
+    color: var(--white);
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    color: var(--white);
+    background-color: color-mix(in srgb, var(--primary) 90%, black); /* Slightly darker primary */
+    border-color: color-mix(in srgb, var(--primary) 85%, black); /* Slightly darker border */
+}
+
+/* Secondary Button (e.g., View Details, Less important actions) */
+.btn-secondary {
+    color: var(--white);
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-secondary:hover {
+    color: var(--white);
+    background-color: color-mix(in srgb, var(--secondary) 90%, black); /* Slightly darker secondary */
+    border-color: color-mix(in srgb, var(--secondary) 85%, black); /* Slightly darker border */
+}
+
+/* Light Button (Often on dark backgrounds) */
+.btn-light {
+     color: var(--dark);
+     background-color: var(--light);
+     border-color: var(--light);
+}
+.btn-light:hover {
+    color: var(--dark);
+    background-color: color-mix(in srgb, var(--light) 95%, black);
+    border-color: color-mix(in srgb, var(--light) 90%, black);
+}
+
+/* Outline Button */
+.btn-outline-primary {
+    color: var(--primary);
+    border-color: var(--primary);
+    background-color: transparent;
+}
+.btn-outline-primary:hover {
+    color: var(--white);
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+
+/* Button Sizes (Square/Rectangular) */
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+/* Shared styles for square buttons */
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: inline-flex; /* Use inline-flex */
+    align-items: center;
+    justify-content: center;
+    font-weight: normal; /* Keep normal weight for icons usually */
+    border-radius: var(--border-radius); /* Consistent radius */
+}
+
+
+/* --- Navbar --- */
+.navbar {
+    padding-top: 0; /* Adjust padding as needed */
+    padding-bottom: 0;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; /* Smooth transition */
+}
+
+/* Dropdown Toggle Arrow */
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107"; /* Font Awesome Angle Down */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+    transition: transform var(--transition-speed) ease;
+}
+.navbar .nav-item.dropdown:hover .dropdown-toggle::after {
+     transform: rotate(180deg); /* Rotate arrow on hover/open */
+}
+
+
+/* Navbar Links (Light theme context) */
+.navbar-light .navbar-nav .nav-link {
+    margin-right: 25px; /* Slightly reduced margin */
+    padding: 25px 0;
+    color: var(--dark); /* Use dark color for text on light navbar */
+    font-size: 15px;
+    font-weight: 500; /* Medium weight */
+    text-transform: uppercase;
+    outline: none;
+    position: relative;
+    transition: color var(--transition-speed) ease;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary); /* Highlight with primary color */
+}
+
+/* Optional: Add an underline effect on hover/active */
+.navbar-light .navbar-nav .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 15px; /* Position underline */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    transform: scaleX(0);
+    transition: transform var(--transition-speed) ease-in-out;
+    transform-origin: right;
+}
+
+.navbar-light .navbar-nav .nav-link:hover::before,
+.navbar-light .navbar-nav .nav-link.active::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+/* Responsive Navbar */
+@media (max-width: 991.98px) {
+    .navbar-light .navbar-nav .nav-link {
+        margin-right: 0;
+        padding: 12px 15px; /* Adjust padding for collapsed menu */
+    }
+     .navbar-light .navbar-nav .nav-link::before {
+        bottom: 5px; /* Adjust underline position */
+     }
+
+    .navbar-light .navbar-nav {
+        border-top: 1px solid var(--border-color); /* Use variable */
+        margin-top: 10px; /* Add some space above the mobile menu */
+    }
+    .navbar-collapse {
+         max-height: 70vh; /* Limit height on mobile */
+         overflow-y: auto; /* Allow scrolling if needed */
+    }
+}
+
+/* Navbar Brand & Action Button Alignment */
+.navbar-light .navbar-brand {
+    height: 75px; /* Keep height */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center;
+}
+.navbar-light .navbar-brand img {
+    max-height: 50px; /* Control logo size */
+}
+
+.navbar-light a.btn {
+     height: auto; /* Let button height be determined by padding */
+     align-self: center; /* Align button vertically in navbar */
+}
+
+/* Sticky Navbar */
+.navbar-light.sticky-top {
+    top: -120px; /* Hide slightly more */
+    transition: top var(--transition-speed) ease-in-out; /* Smoother transition */
+    background-color: var(--white); /* Ensure background for sticky state */
+    box-shadow: var(--box-shadow-sm); /* Add shadow when sticky */
+}
+.navbar-light.sticky-top.show { /* Add a class 'show' via JS when scrolled */
+    top: 0;
+}
+
+/* Desktop Dropdown Menu */
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block; /* Keep display block for transitions */
+        margin-top: 5px; /* Small gap */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px); /* Start slightly lower */
+        transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease, transform var(--transition-speed) ease;
+        border: 1px solid var(--border-color); /* Add border */
+        background-color: var(--white);
+        box-shadow: var(--box-shadow-sm);
+        border-radius: var(--border-radius); /* Apply radius */
+    }
+
+     /* Removed the complex .fade-down and rotateX animation for a simpler fade/slide */
+
+    .navbar .nav-item:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); /* Slide up to final position */
+    }
+    .dropdown-item {
+        transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    }
+    .dropdown-item:hover, .dropdown-item:focus {
+         background-color: var(--light);
+         color: var(--primary);
+    }
+}
+
+
+/* --- Header Carousel / Hero Section --- */
+.header-carousel .owl-carousel-item {
+    position: relative;
+    min-height: 500px; /* Default height */
+    display: flex; /* Use flex for content alignment */
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+     .header-carousel .owl-carousel-item {
+        min-height: 600px; /* Taller on larger screens */
+     }
+}
+@media (min-width: 992px) {
+     .header-carousel .owl-carousel-item {
+        min-height: 700px; /* Even taller */
+     }
+}
+
+.header-carousel .owl-carousel-item img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area */
+    z-index: -1; /* Behind content */
+    filter: brightness(0.6); /* Darken image slightly for text contrast */
+}
+
+/* Carousel Content Styling */
+.header-carousel .carousel-caption {
+    position: static; /* Override absolute positioning */
+    text-align: left; /* Align text left */
+    max-width: 700px; /* Limit width */
+    color: var(--white); /* Ensure text is white */
+}
+.header-carousel .carousel-caption h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.header-carousel .carousel-caption p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+    .header-carousel .carousel-caption h1 {
+        font-size: 3.5rem;
+    }
+     .header-carousel .carousel-caption p {
+        font-size: 1.25rem;
+    }
+}
+
+
+/* Carousel Navigation */
+.header-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    right: 5%; /* Adjust position */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between buttons */
+}
+
+.header-carousel .owl-nav .owl-prev,
+.header-carousel .owl-nav .owl-next {
+    margin: 0; /* Reset margin */
+    width: 50px; /* Slightly larger */
+    height: 50px; /* Slightly larger */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background: rgba(6, 187, 204, 0.5); /* Semi-transparent primary */
+    border: none; /* Remove border */
+    border-radius: var(--border-radius); /* Apply radius */
+    font-size: 24px; /* Larger icon */
+    transition: background-color var(--transition-speed) ease;
+}
+
+.header-carousel .owl-nav .owl-prev:hover,
+.header-carousel .owl-nav .owl-next:hover {
+    background: var(--primary); /* Solid primary on hover */
+    color: var(--white);
+}
+
+
+/* --- Page Header (Sub-pages) --- */
+.page-header {
+     background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),/* Example background */
+     background-size: cover;
+     padding: 25px 0; /* More padding */
+}
+
+.page-header-inner {
+    /* background: rgba(255, 255, 255, 0.7); */ /* Remove inner background, rely on text color */
+     color: var(--white); /* Set text to white */
+}
+.page-header h1 {
+     color: var(--white);
+     font-size: 3rem;
+}
+
+.breadcrumb-item {
+     color: var(--light); /* Light color for breadcrumbs */
+}
+.breadcrumb-item a {
+     color: var(--primary); /* Primary color for links */
+     text-decoration: none;
+     transition: color var(--transition-speed) ease;
+}
+.breadcrumb-item a:hover {
+     color: var(--white);
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--light); /* Color for the separator */
+    content: "/"; /* Standard separator */
+    padding: 0 0.5rem;
+}
+.breadcrumb-item.active {
+     color: var(--gray); /* Dimmer color for the active page */
+}
+
+
+/* --- Section Title --- */
+.section-title {
+    position: relative;
+    display: inline-block; /* Keep inline-block */
+    text-transform: uppercase;
+    font-weight: 700; /* Ensure bold */
+    margin-bottom: 30px; /* Spacing below title */
+    padding-bottom: 10px; /* Space for the border */
+    color: var(--dark);
+}
+
+/* Simplified underline effect */
+.section-title::after {
+    position: absolute;
+    content: "";
+    width: 60px; /* Fixed width underline */
+    height: 3px; /* Thicker line */
+    bottom: 0; /* Position at the bottom */
+    left: 50%; /* Center align */
+    transform: translateX(-50%); /* Center align */
+    background: var(--primary); /* Use primary color */
+    z-index: 1; /* Ensure it's visible */
+}
+
+/* Left-aligned version */
+.section-title.text-start::after {
+    left: 0; /* Align left */
+    transform: translateX(0); /* Align left */
+}
+
+
+/* --- Service / Feature Item --- */
+.service-item {
+    background: var(--white); /* Use white or light background */
+    padding: 30px;
+    text-align: center;
+    border-radius: var(--border-radius-lg); /* Larger radius */
+    box-shadow: var(--box-shadow-sm);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    height: 100%; /* Ensure items in a row have same height */
+    border: 1px solid var(--border-color);
+}
+
+.service-item:hover {
+    transform: translateY(-10px); /* Lift effect */
+    box-shadow: var(--box-shadow); /* More prominent shadow on hover */
+}
+
+/* Icon styling within service item */
+.service-item .icon {
+    font-size: 3rem; /* Large icon */
+    color: var(--primary);
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.service-item h5 { /* Title style */
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.service-item p { /* Description style */
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+
+/* --- Categories / Product Grid Items --- */
+.category-item a, /* Use a wrapper 'a' tag or apply to item */
+.product-item {
+    display: block; /* Make item block level */
+    overflow: hidden; /* Contain image zoom */
+    border-radius: var(--border-radius-lg); /* Consistent radius */
+    position: relative;
+    box-shadow: var(--box-shadow-sm);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    background-color: var(--white);
+    text-decoration: none;
+    color: var(--dark);
+    margin-bottom: 24px; /* Spacing between items */
+    border: 1px solid var(--border-color);
+}
+
+.category-item a:hover,
+.product-item:hover {
+    transform: translateY(-5px); /* Subtle lift */
+    box-shadow: var(--box-shadow);
+}
+
+.category-item img,
+.product-item .product-img img {
+    transition: transform var(--transition-speed) ease;
+    width: 100%; /* Ensure image fills container width */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+}
+
+.category-item a:hover img,
+.product-item:hover .product-img img {
+    transform: scale(1.05); /* Slightly smaller zoom */
+}
+
+/* Category Specific Overlay/Text */
+.category-item .category-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(24, 29, 56, 0.8); /* Dark overlay */
+    color: var(--white);
+    padding: 15px;
+    text-align: center;
+}
+.category-item .category-text h5 {
+    margin-bottom: 5px;
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+.category-item .category-text span {
+    font-size: 0.9rem;
+    color: var(--light);
+}
+
+/* Product Item Specific Details */
+.product-item .product-img {
+    overflow: hidden; /* Contain image zoom */
+    border-top-left-radius: var(--border-radius-lg); /* Match item radius */
+    border-top-right-radius: var(--border-radius-lg);
+}
+.product-item .product-details {
+    padding: 20px;
+    text-align: center;
+}
+.product-item .product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block; /* Ensure it takes full width */
+    color: var(--dark);
+}
+.product-item .product-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+.product-item .product-price .old-price {
+    text-decoration: line-through;
+    color: var(--gray);
+    font-weight: normal;
+    margin-left: 8px;
+    font-size: 1rem;
+}
+.product-item .product-rating {
+     margin-bottom: 15px;
+     color: #FFC107; /* Gold color for stars */
+}
+.product-item .product-rating .fa-star-half-alt { /* Handle half stars */
+     color: #FFC107;
+}
+.product-item .product-rating .text-muted { /* For empty stars */
+     color: var(--gray) !important;
+}
+
+
+/* --- Team Member Item --- */
+.team-item {
+    overflow: hidden; /* Contain image zoom */
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-sm);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    background: var(--white);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.team-item:hover {
+    transform: translateY(-5px); /* Subtle lift */
+    box-shadow: var(--box-shadow);
+}
+
+.team-item img {
+    transition: transform var(--transition-speed) ease;
+    width: 100%;
+    height: auto;
+}
+
+.team-item:hover img {
+    transform: scale(1.05); /* Subtle zoom */
+}
+
+.team-item .team-text {
+    padding: 25px;
+}
+
+.team-item .team-text h5 {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.team-item .team-text span {
+    font-style: italic;
+    color: var(--gray);
+}
+
+/* Social links for team */
+.team-item .team-social {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+.team-item .team-social a.btn {
+    margin: 0 5px;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 50%; /* Circular social icons */
+}
+.team-item .team-social a.btn:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+
+/* --- Testimonial Carousel --- */
+.testimonial-carousel {
+    position: relative; /* Needed for pseudo-elements */
+}
+
+/* Fade effects on sides - Optional */
+.testimonial-carousel::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50px; /* Narrower fade */
+    background: linear-gradient(to right, var(--white) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 2; /* Above items, below nav */
+    pointer-events: none; /* Allow clicking through */
+}
+
+.testimonial-carousel::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50px; /* Narrower fade */
+    background: linear-gradient(to left, var(--white) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Adjust fade width for larger screens */
+@media (min-width: 768px) {
+    .testimonial-carousel::before,
+    .testimonial-carousel::after {
+        width: 100px;
+    }
+}
+@media (min-width: 992px) {
+    .testimonial-carousel::before,
+    .testimonial-carousel::after {
+        width: 150px;
+    }
+}
+
+/* Testimonial Item Styling */
+.testimonial-item {
+    background: var(--light); /* Light background for non-centered */
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    margin: 15px; /* Add margin for spacing */
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    transform: scale(0.9); /* Slightly smaller when not centered */
+    opacity: 0.7; /* Dimmed when not centered */
+    border: 1px solid var(--border-color);
+}
+
+.testimonial-carousel .owl-item.center .testimonial-item {
+    background: var(--primary); /* Primary background for centered item */
+    color: var(--white);
+    transform: scale(1); /* Full size when centered */
+    opacity: 1; /* Full opacity */
+    box-shadow: var(--box-shadow);
+}
+
+.testimonial-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 4px solid var(--white); /* Border around image */
+    box-shadow: var(--box-shadow-sm);
+}
+
+.testimonial-carousel .owl-item.center .testimonial-item img {
+     border-color: var(--light); /* Light border on centered item */
+}
+
+
+.testimonial-item h5 { /* Client name */
+    font-weight: 600;
+    margin-bottom: 5px;
+    transition: color var(--transition-speed) ease;
+}
+.testimonial-carousel .owl-item.center .testimonial-item h5 {
+    color: var(--white);
+}
+
+.testimonial-item span { /* Client profession */
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--gray);
+    transition: color var(--transition-speed) ease;
+}
+.testimonial-carousel .owl-item.center .testimonial-item span {
+    color: var(--light);
+}
+
+.testimonial-item p { /* Testimonial text */
+    margin-top: 15px;
+    transition: color var(--transition-speed) ease;
+}
+.testimonial-carousel .owl-item.center .testimonial-item p {
+    color: var(--white);
+}
+
+
+/* Carousel Dots */
+.testimonial-carousel .owl-dots {
+    margin-top: 30px; /* Increased spacing */
+    display: flex;
+    align-items: center; /* Align dots vertically */
+    justify-content: center;
+}
+
+.testimonial-carousel .owl-dot {
+    position: relative;
+    display: inline-block;
+    margin: 0 6px; /* Adjust spacing */
+    width: 12px; /* Smaller dots */
+    height: 12px; /* Smaller dots */
+    background: var(--light); /* Default dot background */
+    border: 1px solid var(--border-color); /* Border for definition */
+    border-radius: 50%; /* Circular dots */
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.testimonial-carousel .owl-dot.active {
+    background: var(--primary); /* Active dot background */
+    border-color: var(--primary); /* Active dot border */
+}
+.testimonial-carousel .owl-dot:hover {
+    background: var(--dark); /* Darker dot on hover */
+    border-color: var(--dark);
+}
+
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--dark); /* Dark footer background */
+    color: var(--light); /* Light text color for contrast */
+    padding-top: 60px; /* More padding */
+}
+
+.footer h4 { /* Footer section titles */
+    color: var(--white);
+    margin-bottom: 25px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+}
+/* Underline for footer titles */
+.footer h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+
+/* Footer Social Buttons */
+.footer .btn.btn-social {
+    margin-right: 8px; /* Adjust spacing */
+    width: 40px; /* Slightly larger */
+    height: 40px;
+    display: inline-flex; /* Use inline-flex */
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-weight: normal;
+    border: 1px solid var(--light); /* Light border */
+    border-radius: var(--border-radius); /* Consistent radius with other buttons */
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.footer .btn.btn-social:hover {
+    color: var(--white);
+    background-color: var(--primary); /* Primary background on hover */
+    border-color: var(--primary);
+}
+
+/* Footer Links */
+.footer .btn.btn-link {
+    display: block;
+    margin-bottom: 8px; /* Adjust spacing */
+    padding: 0;
+    text-align: left;
+    color: var(--light); /* Use light color */
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: color var(--transition-speed) ease, letter-spacing var(--transition-speed) ease;
+    text-decoration: none; /* Remove default underline */
+    background: none; /* Ensure no background */
+    border: none; /* Ensure no border */
+}
+
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105"; /* Font Awesome Angle Right */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+    color: var(--primary); /* Icon color */
+    transition: margin-right var(--transition-speed) ease;
+}
+
+.footer .btn.btn-link:hover {
+    letter-spacing: 0.5px; /* Subtle spacing increase */
+    box-shadow: none; /* No shadow needed */
+    color: var(--primary); /* Highlight link text on hover */
+}
+.footer .btn.btn-link:hover::before {
+     margin-right: 15px; /* Push icon slightly on hover */
+}
+
+/* Footer Contact Info */
+.footer .contact-info p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.footer .contact-info i {
+    width: 20px;
+    margin-right: 10px;
+    color: var(--primary); /* Icon color */
+    text-align: center;
+}
+
+/* Footer Newsletter/Input */
+.footer .input-group .form-control {
+    border-radius: var(--border-radius) 0 0 var(--border-radius); /* Match radius */
+}
+.footer .input-group .btn {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0; /* Match radius */
+}
+
+/* Copyright Section */
+.footer .copyright {
+    padding: 25px 0;
+    font-size: 14px; /* Slightly smaller */
+    border-top: 1px solid rgba(255, 255, 255, .1); /* Subtle border */
+    margin-top: 40px; /* Space above copyright */
+    text-align: center;
+}
+
+.footer .copyright a {
+    color: var(--primary); /* Highlight links in copyright */
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer .copyright a:hover {
+    color: var(--white);
+}
+
+/* Footer Menu (Inline links at bottom) */
+.footer .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, .1);
+    color: var(--light); /* Use light color */
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer .footer-menu a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}
+.footer .footer-menu a:hover {
+    color: var(--primary); /* Highlight on hover */
+}
+
+/* --- Additional E-commerce Specific Styles --- */
+
+/* Product Filters/Sidebar */
+.sidebar-widget {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--light);
+    border-radius: var(--border-radius);
+}
+.sidebar-widget .widget-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar-widget ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar-widget ul li a {
+    color: var(--dark);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+    display: block;
+    padding: 5px 0;
+}
+.sidebar-widget ul li a:hover {
+    color: var(--primary);
+}
+
+/* Price Range Slider (Placeholder style) */
+.price-range-slider {
+    /* Add styles for your specific slider implementation */
+    height: 5px;
+    background: var(--border-color);
+    margin-top: 10px;
+}
+
+/* Forms (Basic Styling) */
+.form-control {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: border-color var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+}
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary), 0.25);
+    outline: 0;
+}
+.form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.form-select {
+     border-radius: var(--border-radius);
+}
+.form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
